@@ -1,24 +1,41 @@
 const bacnet = require('bacstack');
 const { EventEmitter } = require('events');
+const { BacnetReadConfig } = require('./BacnetReadConfig');
 
 class BacnetClient extends EventEmitter {
 
+    /**
+     * Instance of a client to exchange data with a BACnet device
+     * @param {String} deviceIp 
+     */
     constructor(deviceIp) {
         super();
         this.deviceIp = deviceIp;
         this.client = new bacnet();
     }
 
-    read(objectType, objectInstance, propertyId) {
-        this.client.readProperty(this.deviceIp, { type: objectType, instance: objectInstance }, propertyId, (err, value) => {
+    /**
+     * Read data from BACnet device based on given config
+     * @param {BacnetReadConfig} config 
+     */
+    read(config) {
+        this.client.readProperty(this.deviceIp, { type: config.objectType, instance: config.objectInstance }, config.propertyId, (err, value) => {
             if (err) {
-                console.error('Error reading BACnet property:', err);
+                this.emit('error', err);
                 return;
             }
-
-            console.log('Present Value of Analog Value 40001:', value);
+            
+            this.emit('value', value);
         });
     }
+
+    /**
+     * Close connection to BACnet device
+     */
+    close() {
+        this.client.close();
+    }
+
 }
 
 module.exports = { BacnetClient };

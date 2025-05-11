@@ -1,4 +1,3 @@
-
 const BacnetObjectTypes = Object.freeze({
   ANALOG_INPUT: 0,
   ANALOG_OUTPUT: 1,
