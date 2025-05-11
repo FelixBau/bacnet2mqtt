@@ -1,0 +1,17 @@
+{
+  "name": "bacnet2mqtt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bacstack": "^0.0.1-beta.14",
+    "mqtt": "^5.13.0"
+  }
+}
