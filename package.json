@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc && node dist/main.js"
+    "test": "tsc && node dist/main.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,8 @@
     "@willieee802/ts-bacnet": "^0.3.4",
     "mqtt": "^5.13.0",
     "yaml": "^2.7.1"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
   }
 }

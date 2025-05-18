@@ -1,12 +1,11 @@
-import BacnetReadConfig from './BacnetReadConfig';
-import BacnetClient from '@willieee802/ts-bacnet';
-import { ObjectType, PropertyIdentifier } from '@willieee802/ts-bacnet/lib/src/enum';
+import Client from '@willieee802/ts-bacnet/lib/src/client';
+import BacnetDataConfig from '../data/BacnetDataConfig';
 
 class BacnetReader {
 
     private address : string;
 
-    private client : BacnetClient;
+    private client : Client;
 
     /**
      * Instance of a client to exchange data with a BACnet device
@@ -14,15 +13,15 @@ class BacnetReader {
      */
     constructor(address : string) {
         this.address = address;
-        this.client = new BacnetClient();
+        this.client = new Client();
     }
 
     /**
      * Read data from BACnet device based on given config
      * @param readConfig
      */
-    read(readConfig : BacnetReadConfig) {
-        this.client.readProperty(this.address, readConfig.objectId, readConfig.propertyId, {}, (err, res) => {
+    read(bacnetDataConfig : BacnetDataConfig) {
+        this.client.readProperty(this.address, bacnetDataConfig.objectId, bacnetDataConfig.propertyId, {}, (err, res) => {
             if (err) console.error(err);
             console.log(res);
         });

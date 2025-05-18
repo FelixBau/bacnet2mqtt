@@ -1,9 +1,8 @@
 import BacnetReader from "./bacnet/BacnetReader";
-import BacnetReadConfig from "./bacnet/BacnetReadConfig";
 import { ObjectType, PropertyIdentifier } from "@willieee802/ts-bacnet/lib/src/enum";
+import BacnetDataConfig from "./data/BacnetDataConfig";
 
-const config : BacnetReadConfig = {
-    id: 'outdoor_temperature',
+const config : BacnetDataConfig = {
     objectId: {
         type: ObjectType.ANALOG_VALUE,
         instance: 40001
